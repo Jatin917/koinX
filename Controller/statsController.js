@@ -9,11 +9,15 @@ function sortByKeyDescending(array, key) {
 }
 export const statsController = async(req, res)=>{
     try {
-        const id = req.params.coin;
-        const response = await currencySchema.findOne({name:id});
-        const latest = sortByKeyDescending(response, timestamp)
-        return res.json(latest);
+        const id = req.query.coin;
+        const response = await currencySchema.find({name:id});
+        if(!response){
+            throw new Error("didn't found any coin")
+        }
+        const latest = sortByKeyDescending(response, "timestamp")[0]
+        return res.status(200).json({price:latest.price, marketCap:latest.marketCap, change24h:latest.change24h});
     } catch (error) {
         console.log(error.message);
+        return res.status(500).json({message:error.message})
     }
 }
