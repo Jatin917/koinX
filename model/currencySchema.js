@@ -1,10 +1,10 @@
 import { mongoose } from "mongoose";
 
-const currencySchema = new mongoose.Schema({
+const currency = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    enum: ["bitcoin", "matic", "ethereum"],
+    enum: ["bitcoin", "matic-network", "ethereum"],
   },
   price: {
     type: Number,
@@ -24,4 +24,4 @@ const currencySchema = new mongoose.Schema({
   },
 });
 
-export default currencySchema = mongoose.model("currencySchema", currencySchema);
+export const currencySchema = mongoose.model("currencySchema", currency);
