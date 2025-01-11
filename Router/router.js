@@ -6,5 +6,5 @@ const router = express.Router();
 
 router.get('/stats', statsController);
 router.get('/deviation', deviationController);
-router.get('/', "backend is running");
+router.get('/',(req, res)=> res.send("backend is running"));
 export default router;
