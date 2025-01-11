@@ -70,7 +70,7 @@ const fetchingAndUpdating = async(name)=>{
 
 export const schedulerFunction = async () =>{
     
-    cron.schedule('*/2 * * * *', async () => {
+    cron.schedule('0 */2 * * *', async () => {
         console.log('Fetching cryptocurrency data...');
         try {
             const promises = coins.map((coin)=> schedulerWithRetry(coin));
